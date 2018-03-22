@@ -57,11 +57,10 @@ class MailThread(models.AbstractModel):
             )
             email = self.env['mail.mail'].create({
                 'body_html': (
-                    u"%s<br/><br/><br/>%s<br/><br/>%s"
+                    "%s<br/><br/><br/>Raw message:<br/><br/>%s"
                     % (
                         message_dict['body'],
-                        _("Raw message:"),
-                        unicode(message.__str__(), errors='replace').replace(
+                        message.__str__().replace(
                             "\n", "<br/>")
                     )),
                 'subject': message_dict['subject'],
